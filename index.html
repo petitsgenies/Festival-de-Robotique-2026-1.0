@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Festival Robotique Junior 2026</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+
+/* RESET */
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+/* BODY */
+body{
+font-family:'Orbitron',sans-serif;
+background:#ffffff;
+color:#0b1d2a;
+overflow-x:hidden;
+text-align:center;
+}
+
+/* ================= INTRO ================= */
+.intro{
+position:fixed;
+inset:0;
+background:#ffffff;
+display:flex;
+justify-content:center;
+align-items:center;
+z-index:9999;
+animation:fadeOut 2s ease 3s forwards;
+}
+
+.intro-logo{
+width:160px;
+animation:robotIn 2s ease;
+filter:drop-shadow(0 10px 20px rgba(0,0,0,0.2));
+}
+
+@keyframes robotIn{
+0%{
+transform:translateY(-200px) scale(0.5);
+opacity:0;
+}
+
+60%{
+transform:translateY(20px) scale(1.1);
+opacity:1;
+}
+
+100%{
+transform:translateY(0) scale(1);
+}
+}
+
+@keyframes fadeOut{
+to{
+opacity:0;
+visibility:hidden;
+}
+}
+
+/* ================= BALLONS ================= */
+.balloons{
+position:fixed;
+inset:0;
+overflow:hidden;
+z-index:-1;
+pointer-events:none;
+}
+
+.balloon{
+position:absolute;
+bottom:-120px;
+width:45px;
+height:60px;
+border-radius:50%;
+opacity:0.7;
+animation:floatUp 12s linear infinite;
+}
+
+.balloon::after{
+content:"";
+position:absolute;
+width:2px;
+height:40px;
+background:#aaa;
+left:50%;
+top:60px;
+transform:translateX(-50%);
+}
+
+@keyframes floatUp{
+0%{
+transform:translateY(0);
+}
+
+100%{
+transform:translateY(-120vh);
+}
+}
+
+.balloon:nth-child(1){
+left:10%;
+background:#ffd60a;
+}
+
+.balloon:nth-child(2){
+left:25%;
+background:#3a86ff;
+animation-delay:2s;
+}
+
+.balloon:nth-child(3){
+left:40%;
+background:#8338ec;
+animation-delay:4s;
+}
+
+.balloon:nth-child(4){
+left:60%;
+background:#ff006e;
+animation-delay:1s;
+}
+
+.balloon:nth-child(5){
+left:80%;
+background:#06d6a0;
+animation-delay:3s;
+}
+
+/* ================= HEADER ================= */
+header{
+padding:40px 20px 10px;
+}
+
+.logo img{
+width:120px;
+}
+
+h1{
+font-size:38px;
+background:linear-gradient(90deg,#ffd60a,#3a86ff,#8338ec);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+animation:glow 4s infinite linear;
+}
+
+@keyframes glow{
+0%{
+filter:hue-rotate(0deg);
+}
+
+100%{
+filter:hue-rotate(360deg);
+}
+}
+
+.date{
+color:#3a86ff;
+margin-top:10px;
+}
+
+.location{
+color:#8338ec;
+margin-bottom:10px;
+}
+
+/* ================= COUNTDOWN ================= */
+.countdown{
+display:inline-block;
+margin:20px auto;
+padding:15px 25px;
+font-size:26px;
+border-radius:12px;
+color:white;
+background:linear-gradient(90deg,#8338ec,#3a86ff,#ffd60a);
+animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+0%,100%{
+transform:scale(1);
+}
+
+50%{
+transform:scale(1.05);
+}
+}
+
+/* ================= TITRE ================= */
+.section-title{
+font-size:30px;
+margin:40px 0 15px;
+}
+
+/* ================= BUTTONS ================= */
+.btn{
+display:inline-block;
+padding:12px 25px;
+border-radius:10px;
+text-decoration:none;
+color:white;
+font-weight:bold;
+background:linear-gradient(90deg,#8338ec,#3a86ff,#ffd60a);
+background-size:300% 300%;
+animation:glow 5s infinite;
+transition:0.3s;
+margin-top:10px;
+}
+
+.btn:hover{
+transform:scale(1.08);
+}
+
+/* PDF BUTTON */
+.pdf-btn{
+background:linear-gradient(90deg,#ff006e,#ffbe0b);
+font-size:14px;
+padding:10px 20px;
+}
+
+/* GENERAL PDF */
+.general-pdf{
+margin-bottom:30px;
+}
+
+/* ================= CARDS ================= */
+.competitions{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+padding:20px;
+max-width:1200px;
+margin:auto;
+}
+
+.card{
+background:white;
+border-radius:18px;
+overflow:hidden;
+box-shadow:0 10px 30px rgba(0,0,0,0.15);
+transition:0.5s;
+transform-style:preserve-3d;
+}
+
+.card:hover{
+transform:
+perspective(1000px)
+rotateX(10deg)
+rotateY(-10deg)
+translateY(-12px);
+
+box-shadow:0 25px 60px rgba(58,134,255,0.3);
+}
+
+.card img{
+width:100%;
+height:200px;
+object-fit:cover;
+transition:0.5s;
+}
+
+.card:hover img{
+transform:scale(1.08);
+}
+
+.card-content{
+padding:20px;
+}
+
+.card h3{
+margin-bottom:10px;
+}
+
+.card p{
+font-size:14px;
+color:#555;
+min-height:60px;
+}
+
+/* ================= FOOTER ================= */
+footer{
+margin:40px 0;
+font-size:13px;
+opacity:0.7;
+}
+
+/* ================= MOBILE ================= */
+@media(max-width:768px){
+
+h1{
+font-size:24px;
+}
+
+.countdown{
+font-size:20px;
+}
+
+.card img{
+height:160px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- 🎈 BALLONS -->
+<div class="balloons">
+
+<div class="balloon"></div>
+<div class="balloon"></div>
+<div class="balloon"></div>
+<div class="balloon"></div>
+<div class="balloon"></div>
+
+</div>
+
+<!-- 🎬 INTRO -->
+<div class="intro">
+
+<img src="logo.png"
+class="intro-logo"
+alt="logo">
+
+</div>
+
+<!-- HEADER -->
+<header>
+
+<div class="logo">
+<img src="logo.png" alt="logo">
+</div>
+
+<h1>FESTIVAL ROBOTIQUE JUNIOR</h1>
+
+<div class="date">
+📅 28 Juin 2026
+</div>
+
+<div class="location">
+📍 Salle des Sports Taoufik Bouhima
+</div>
+
+</header>
+
+<!-- COUNTDOWN -->
+<div class="countdown" id="countdown">
+Chargement...
+</div>
+
+<!-- SECTION TITLE -->
+<h2 class="section-title">
+🏆 Compétitions
+</h2>
+
+<!-- GENERAL RULES PDF -->
+<div class="general-pdf">
+
+<a href="reglement_general.pdf"
+class="btn pdf-btn"
+download>
+
+📘 Télécharger le règlement général
+
+</a>
+
+</div>
+
+<!-- COMPETITIONS -->
+<div class="competitions">
+
+<!-- SUIVEUR -->
+<div class="card">
+
+<img src="suivredeligne.png">
+
+<div class="card-content">
+
+<h3>🤖 Suiveur de ligne</h3>
+
+<p>
+Robot autonome suivant une piste avec précision.
+</p>
+
+<a href="https://docs.google.com/forms/d/e/1FAIpQLSetNbbCxR9k3Kv6MwwHVJWwpxtarpD7KjO3OY2SgiHlcI87Zw/viewform?usp=publish-editor"
+class="btn">
+
+S'inscrire
+
+</a>
+
+<br>
+
+<a href="suiveur_de_ligne.pdf"
+class="btn pdf-btn"
+download>
+
+📄 Télécharger PDF
+
+</a>
+
+</div>
+</div>
+
+<!-- SUMO -->
+<div class="card">
+
+<img src="sumo.png">
+
+<div class="card-content">
+
+<h3>🥋 Robot Sumo</h3>
+
+<p>
+Éjectez votre adversaire hors de l’arène.
+</p>
+
+<a href="https://docs.google.com/forms/d/e/1FAIpQLSdCbW7BU4DzpPC3N8fBbIyuFO1h6ULa6alxfv4KyL4e7vLmlA/viewform?usp=dialog"
+class="btn">
+
+S'inscrire
+
+</a>
+
+<br>
+
+<a href="sumo.pdf"
+class="btn pdf-btn"
+download>
+
+📄 Télécharger PDF
+
+</a>
+
+</div>
+</div>
+
+<!-- TOUT TERRAIN -->
+<div class="card">
+
+<img src="Toutterrain.png">
+
+<div class="card-content">
+
+<h3>🚜 Tout Terrain</h3>
+
+<p>
+Franchir obstacles et terrains complexes.
+</p>
+
+<a href="https://docs.google.com/forms/d/e/1FAIpQLSfDa8tW_eOTy04A_9tKvpsrC5SnW0dppEncQAAskcvWYvQ8Mg/viewform?usp=publish-editor"
+class="btn">
+
+S'inscrire
+
+</a>
+
+<br>
+
+<a href="tout_terrain.pdf"
+class="btn pdf-btn"
+download>
+
+📄 Télécharger PDF
+
+</a>
+
+</div>
+</div>
+
+<!-- VITESSE -->
+<div class="card">
+
+<img src="vitesse.png">
+
+<div class="card-content">
+
+<h3>⚡ Vitesse</h3>
+
+<p>
+Course rapide et optimisation maximale.
+</p>
+
+<a href="https://docs.google.com/forms/d/e/1FAIpQLSdh9-HmtylWuQFWm4QTpO0rQl8pUlnY5gw0MR9ksW2OxZDMIA/viewform?usp=publish-editor"
+class="btn">
+
+S'inscrire
+
+</a>
+
+<br>
+
+<a href="vitesse.pdf"
+class="btn pdf-btn"
+download>
+
+📄 Télécharger PDF
+
+</a>
+
+</div>
+</div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+© 2026 Festival Robotique Junior
+</footer>
+
+<!-- SCRIPT COUNTDOWN -->
+<script>
+
+const eventDate = new Date("June 28, 2026 00:00:00").getTime();
+
+setInterval(() => {
+
+const now = new Date().getTime();
+
+const diff = eventDate - now;
+
+document.getElementById("countdown").innerHTML =
+
+Math.floor(diff / 86400000) + "j " +
+
+Math.floor((diff % 86400000) / 3600000) + "h " +
+
+Math.floor((diff % 3600000) / 60000) + "m " +
+
+Math.floor((diff % 60000) / 1000) + "s";
+
+},1000);
+
+</script>
+
+</body>
+</html>
